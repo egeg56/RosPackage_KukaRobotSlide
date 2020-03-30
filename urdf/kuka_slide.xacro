@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<robot name="Kuka_LBR_iiwa7_R800_slide" xmlns:xacro="http://wiki.ros.org/xacro">
+    <xacro:include filename="$(find kuka_robot_slide)/urdf/kuka_slide_macro.xacro" />
+
+    <xacro:slide_base_link_macro
+      base_link_name="slide_base_link">
+    </xacro:slide_base_link_macro>
+
+    <xacro:slide_joint
+			name="slide_joint"
+			type="prismatic"
+			parent="slide_base_link"
+			child="slide">
+			<origin xyz="0 0 0" />
+			<axis xyz="1 0 0"/>
+		</xacro:slide_joint>
+
+    <xacro:slide_link name="slide">
+			<geometry>
+				<box size="0.4 0.4 0.1"/>
+			</geometry>
+			<origin xyz="0 0 0.05" rpy="0 0 0"/>
+		</xacro:slide_link>
+
+    <xacro:fixed_joint
+			name="wield_joint"
+			parent="slide"
+			child="base_link">
+			<origin xyz="0 0 0.1" />
+		</xacro:fixed_joint>
+
+    <xacro:include filename="$(find kuka_robot)/urdf/kuka.xacro" />
+
+
+
+</robot>
